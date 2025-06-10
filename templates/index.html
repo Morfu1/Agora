@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agora Meditations Videos</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Agora Meditations Videos</h1>
+    </header>
+
+    <main>
+        <div id="video-list-container">
+            {% if videos %}
+                {% for video in videos %}
+                <article class="video-item">
+                    <h3>
+                        <a href="{{ video.url if video.url else '#' }}" target="_blank">{{ video.get('title', 'No Title Available') }}</a>
+                    </h3>
+                    {% if video.thumbnail_url %}
+                    <img src="{{ video.thumbnail_url }}" alt="Thumbnail for {{ video.get('title', 'Video') }}" style="max-width: 200px; height: auto;">
+                    {% else %}
+                    <div class="video-thumbnail-placeholder" style="width:200px; height:112px; background-color:#ccc; display:flex; align-items:center; justify-content:center;">
+                        <span>No thumbnail</span>
+                    </div>
+                    {% endif %}
+                    <p><strong>URL:</strong> <a href="{{ video.url if video.url else '#' }}" target="_blank">{{ video.url if video.url else 'N/A' }}</a></p>
+                    {# Description is often null with --flat-playlist, but we include it if present #}
+                    <p class="video-description">
+                        {{ video.get('description', 'No description available.') | truncate(200) }}
+                    </p>
+                </article>
+                <hr>
+                {% endfor %}
+            {% else %}
+                <p>No videos found. Please make sure 'videos.json' exists and is correctly populated, then refresh.</p>
+            {% endif %}
+        </div>
+    </main>
+
+    <footer>
+        <!-- Optional: Add a footer later if needed -->
+    </footer>
+
+    <!-- Optional: Link to JavaScript file if client-side rendering is planned -->
+    <!-- <script src="static/script.js"></script> -->
+</body>
+</html>

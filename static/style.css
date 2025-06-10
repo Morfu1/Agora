@@ -88,3 +88,278 @@ h1 {
      /* color: #0056b3; */ /* Darker blue on hover for title link */
     text-decoration: underline;
 }
+
+
+/* === Blog Index Page Styles === */
+.blog-list { /* Changed from #blog-list-container to .blog-list for styling */
+    list-style-type: none;
+    padding: 0;
+}
+
+.blog-list-item { /* Was .blog-post-summary in template, now .blog-list-item */
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.blog-list-item h2 a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.blog-list-item h2 a:hover {
+    color: #007bff;
+}
+
+.blog-list-item .post-meta { /* Class already used in template */
+    font-size: 0.9em;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.blog-list-item .post-meta span { /* For potential spans within post-meta */
+    margin-right: 15px;
+}
+
+.blog-list-item .post-categories { /* Class for categories paragraph */
+    font-size: 0.85em;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.blog-list-item .post-categories .category-tag { /* Class for individual category links/tags */
+    background-color: #f0f0f0;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-right: 5px;
+    text-decoration: none;
+    color: #555;
+}
+
+.blog-list-item .post-snippet { /* Class for metaDescription paragraph */
+    font-size: 1em;
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.blog-list-item .read-more-link { /* Class for the "Read more..." link */
+    display: inline-block;
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.blog-list-item .read-more-link:hover {
+    text-decoration: underline;
+}
+
+/* === Single Blog Post Page Styles === */
+.blog-post-container { /* Was .blog-post-full in template */
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    margin-top: 20px; /* Add some space from header */
+}
+
+.blog-post-container h1 { /* Main title of the post */
+    font-size: 2.5em;
+    margin-bottom: 15px;
+    color: #222;
+}
+
+.blog-post-meta { /* Was .post-meta-single in template */
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.featured-image { /* Class already used in template */
+    width: 100%;
+    max-height: 400px; /* Adjust as needed */
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 25px;
+}
+
+/* Table of Contents Styling */
+.table-of-contents { /* Class already used in template */
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 25px;
+    width: auto; /* Default, can be adjusted */
+    float: none; /* Default, can be right for wider screens */
+}
+
+.table-of-contents h2 {
+    font-size: 1.4em;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.table-of-contents ul {
+    list-style-type: none;
+    padding-left: 0; /* Remove default padding */
+}
+
+.table-of-contents ul ul { /* Nested lists in ToC */
+    padding-left: 20px; /* Indent nested items */
+}
+
+.table-of-contents li a {
+    text-decoration: none;
+    color: #0056b3;
+    display: block; /* Make whole area clickable */
+    padding: 4px 0;
+}
+
+.table-of-contents li a:hover {
+    text-decoration: underline;
+    color: #003d80;
+}
+
+/* Main Blog Post Content Area */
+.blog-content { /* Class already used in template */
+    line-height: 1.7;
+    font-size: 1.1em; /* Slightly larger for readability */
+    color: #333;
+    clear: both; /* If ToC is floated */
+}
+
+.blog-content h2 {
+    font-size: 1.8em;
+    margin-top: 40px;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+    color: #2c3e50;
+}
+
+.blog-content h3 {
+    font-size: 1.5em;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    color: #34495e;
+}
+
+.blog-content p {
+    margin-bottom: 1.2em;
+}
+
+.blog-content a {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+.blog-content a:hover {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+.blog-content ul, .blog-content ol {
+    margin-bottom: 1.2em;
+    padding-left: 25px;
+}
+
+.blog-content li {
+    margin-bottom: 0.5em;
+}
+
+.blog-content blockquote {
+    border-left: 4px solid #007bff;
+    padding-left: 15px;
+    margin: 20px 0;
+    font-style: italic;
+    color: #555;
+    background-color: #f9f9f9;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.blog-content pre {
+    background-color: #2d2d2d; /* Dark background for code blocks */
+    color: #f8f8f2; /* Light text for contrast */
+    padding: 15px;
+    border-radius: 6px;
+    overflow-x: auto; /* Allow horizontal scrolling for long lines */
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+.blog-content code { /* Inline code */
+    background-color: #f0f0f0;
+    color: #c7254e; /* A common color for inline code */
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.blog-content pre code { /* Reset for code inside pre */
+    background-color: transparent;
+    color: inherit;
+    padding: 0;
+    border-radius: 0;
+}
+
+.blog-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin: 15px 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Responsive adjustments for ToC */
+@media (min-width: 992px) { /* Large screens */
+    .table-of-contents {
+        float: right;
+        width: 300px; /* Fixed width for floated ToC */
+        margin-left: 25px; /* Space between content and ToC */
+        margin-bottom: 10px; /* Reduce bottom margin when floated */
+    }
+}
+
+/* General link back to blog index */
+.back-to-blog-link {
+    display: inline-block;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #007bff;
+}
+
+.back-to-blog-link:hover {
+    text-decoration: underline;
+}
+
+/* Shared navigation styling - assuming a .main-nav class in header */
+/* (Adjust if your HTML structure for nav is different) */
+.main-nav {
+    background-color: #333;
+    padding: 10px 0;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.main-nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.main-nav a:hover {
+    text-decoration: underline;
+}

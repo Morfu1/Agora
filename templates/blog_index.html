@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Agora Meditations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Inline styles removed as they will be in static/style.css */
+        /* Styles for .navigation-links can be moved to main CSS or kept if specific */
+        nav.navigation-links {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+        }
+        nav.navigation-links a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: #007bff;
+        }
+        nav.navigation-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Agora Meditations Blog</h1>
+    </header>
+
+    <nav class="navigation-links">
+        <a href="{{ url_for('index') }}">Video Gallery</a>
+    </nav>
+
+    <main>
+        <div class="blog-list"> {# Changed id to class #}
+            {% if posts %}
+                {% for post in posts %}
+                <article class="blog-list-item"> {# Changed class name #}
+                    <h2>
+                        <a href="{{ url_for('blog_post', slug=post.slug) }}">{{ post.metadata.get('title', 'No Title') }}</a>
+                    </h2>
+                    <p class="post-meta">
+                        <span>Published on
+                        {% if post.metadata.date and post.metadata.date.__class__.__name__ == 'datetime' %}
+                            {{ post.metadata.date.strftime('%B %d, %Y') }}
+                        {% else %}
+                            {{ post.metadata.get('date', 'N/A') }}
+                        {% endif %}
+                        </span>
+                        <span>by {{ post.metadata.get('author', 'Unknown Author') }}</span>
+                    </p>
+                    {% if post.metadata.categories %}
+                        <p class="post-categories">Categories:
+                            {% for category in post.metadata.categories %}
+                                <span class="category-tag">{{ category }}</span>
+                            {% endfor %}
+                        </p>
+                    {% endif %}
+                    <p class="post-snippet"> {# Changed class name #}
+                        {{ post.metadata.get('metaDescription', 'No description available.') }}
+                    </p>
+                    <a href="{{ url_for('blog_post', slug=post.slug) }}" class="read-more-link">Read more...</a> {# Added class #}
+                </article>
+                {% endfor %}
+            {% else %}
+                <p>No blog posts yet. Stay tuned!</p>
+            {% endif %}
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; {{ now().year if now else '' }} Agora Meditations. All rights reserved.</p>
+        <!-- Assuming 'now' is available globally or passed, if not, remove .year or hardcode year -->
+    </footer>
+</body>
+</html>

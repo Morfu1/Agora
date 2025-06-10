@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.metadata.get('title', 'Blog Post') }} - Agora Meditations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Inline styles removed as they will be in static/style.css */
+        /* Styles for .navigation-links can be moved to main CSS or kept if specific */
+        nav.navigation-links {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+        }
+        nav.navigation-links a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: #007bff;
+        }
+        nav.navigation-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Clearfix for floated TOC */
+        .content-wrapper::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Main site header could go here, or just the post title -->
+    </header>
+
+    <nav class="navigation-links">
+        <a href="{{ url_for('index') }}">Video Gallery</a> |
+        <a href="{{ url_for('blog_index') }}" class="back-to-blog-link">Back to Blog Index</a> {# Added class #}
+    </nav>
+
+    <main>
+        <article class="blog-post-container"> {# Changed class name #}
+            <h1>{{ post.metadata.get('title', 'Blog Post Title') }}</h1>
+            <p class="blog-post-meta"> {# Changed class name #}
+                By {{ post.metadata.get('author', 'Unknown Author') }} on
+                {% if post.metadata.date and post.metadata.date.__class__.__name__ == 'datetime' %}
+                    {{ post.metadata.date.strftime('%B %d, %Y') }}
+                {% else %}
+                    {{ post.metadata.get('date', 'N/A') }}
+                {% endif %}
+            </p>
+
+            <div class="content-wrapper">
+                {% if post.toc %}
+                <aside class="table-of-contents">
+                    <h2>Table of Contents</h2>
+                    {{ post.toc | safe }}
+                </aside>
+                {% endif %}
+
+                {% if post.metadata.featuredImage %}
+                    <img src="{{ post.metadata.featuredImage }}" alt="Featured image for {{ post.metadata.get('title', 'Blog Post') }}" class="featured-image"> {# Class name matches CSS #}
+                {% endif %}
+
+                <section class="blog-content"> {# Class name matches CSS #}
+                    {{ post.html_content | safe }}
+                </section>
+            </div>
+
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; {{ now().year if now else '' }} Agora Meditations. All rights reserved.</p>
+         <!-- Assuming 'now' is available globally or passed -->
+    </footer>
+
+</body>
+</html>
